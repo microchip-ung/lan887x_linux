@@ -1,4 +1,4 @@
-Linux Device drivers for Microchip LAN7431 Ethernet Controller and LAN887X PHY
+Linux Device drivers for Microchip LAN887X PHY and LAN7431 Ethernet Controller
 
 Contents:
 
