@@ -1,5 +1,5 @@
-LAN7431/LAN8870 Driver and supporting ethtool package
------------------------------------------------------
+LAN887x Driver and supporting ethtool package
+----------------------------------------------
 
 Contents:
 
@@ -12,3 +12,5 @@ Ethtool Compatibility matrix:
 | :------------: | :-------------:	|
 | v5.15.x		 | v5.19			|
 | v6.1.x		 | v6.2				|
+
+The driver is tested with LAN7431 MAC. The LAN7431 mac driver is also provided in the source directory.
