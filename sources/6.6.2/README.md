@@ -42,6 +42,7 @@ Contents:
 	 - drivers/net/ethernet/microchip/lan743x_ethtool.c 
 	 - drivers/net/ethernet/microchip/lan743x_main.c
 	 - drivers/net/ethernet/microchip/lan743x_main.h
+	 - drivers/net/ethernet/microchip/lan743x_ptp.c
 
 	Ethtool
 	 - Documentation/networking/ethtool-netlink.rst
@@ -70,6 +71,7 @@ Contents:
 	Copy and overwrite <Your-linux-version>/drivers/net/ethernet/microchip/lan743x_main.h
 	Copy and overwrite <Your-linux-version>/drivers/net/ethernet/microchip/lan743x_main.c
 	Copy and overwrite <Your-linux-version>/drivers/net/ethernet/microchip/lan743x_ethtool.c
+	Copy and overwrite <Your-linux-version>/drivers/net/ethernet/microchip/lan743x_ptp.c
 	Copy and overwrite <Your-linux-version>/drivers/net/phy/phy_device.c
 	Copy and overwrite <Your-linux-version>/drivers/net/phy/phy-c45.c
 	Copy and overwrite <Your-linux-version>/drivers/net/phy/microchip_t1.c
@@ -89,6 +91,7 @@ Contents:
 	Delete the object files if they exists.
 	   rm drivers/net/ethernet/microchip/lan743x_ethtool.o
 	   rm drivers/net/ethernet/microchip/lan743x_main.o
+	   rm drivers/net/ethernet/microchip/lan743x_ptp.o
        rm drivers/net/phy/microchip_t1.o
     c. If you are compiling RL3 sources for the first time, run following commands. Otherwise follow from step(d) onwards.
 	Note: run following commands to enable LAN743X and MICROCHIP_T1 kernel modules

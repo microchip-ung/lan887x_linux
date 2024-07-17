@@ -34,6 +34,7 @@ Contents:
         lan743x_main.h      -   lan743x hardware specific header file
         lan743x_main.c      -   lan743x hardware specific source file
         lan743x_ethtool.c   -   lan743x ethtool specific source file
+        lan743x_ptp.c		-   lan743x ptp specific source file
         microchip_t1.c      -   microchip_t1 phy source file including lan8870 phy
         Kconfig             -   phy config file
 
@@ -48,11 +49,13 @@ Contents:
 	Copy and overwrite <Your-linux-version>/drivers/net/ethernet/microchip/lan743x_main.h
 	Copy and overwrite <Your-linux-version>/drivers/net/ethernet/microchip/lan743x_main.c
 	Copy and overwrite <Your-linux-version>/drivers/net/ethernet/microchip/lan743x_ethtool.c
+	Copy and overwrite <Your-linux-version>/drivers/net/ethernet/microchip/lan743x_ptp.c
 	Copy and overwrite <Your-linux-version>/drivers/net/phy/microchip_t1.c
 	Copy and overwrite <Your-linux-version>/drivers/net/phy/Kconfig
 	Delete the object files if they exists.
 	   rm drivers/net/ethernet/microchip/lan743x_ethtool.o
 	   rm drivers/net/ethernet/microchip/lan743x_main.o
+	   rm drivers/net/ethernet/microchip/lan743x_ptp.o
        rm drivers/net/phy/microchip_t1.o
     c. If you are compiling sources for the first time, run following commands. Otherwise follow from step(d) onwards.
 	Note: run following commands to enable LAN743X and MICROCHIP_T1 kernel modules
