@@ -780,8 +780,6 @@ static int lan887x_config_rgmii_delay(struct phy_device *phydev)
 	if (ret < 0)
 		return ret;
 
-	phydev->interface = PHY_INTERFACE_MODE_RGMII_RXID;
-
 	ret = phy_read_mmd(phydev, MDIO_MMD_VEND1, LAN887X_MIS_TX_DLL_CFG_REG0);
 	if (ret < 0)
 		goto err_ret;

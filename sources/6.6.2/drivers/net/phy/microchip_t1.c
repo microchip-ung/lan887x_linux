@@ -1525,8 +1525,6 @@ static int lan887x_config_rgmii_delay(struct phy_device *phydev)
 	if (ret < 0)
 		return ret;
 
-	phydev->interface = PHY_INTERFACE_MODE_RGMII_RXID;
-
 	ret = phy_read_mmd(phydev, MDIO_MMD_VEND1, LAN887X_MIS_TX_DLL_CFG_REG0);
 	if (ret < 0)
 		goto err_ret;
@@ -2911,8 +2909,6 @@ static int lan887x_config_init(struct phy_device *phydev)
 	/* Disable Asym Pause */
 	linkmode_clear_bit(ETHTOOL_LINK_MODE_Asym_Pause_BIT, phydev->supported);
 
-	phydev->interface = PHY_INTERFACE_MODE_RGMII_RXID;
-
 	return lan887x_phy_init(phydev);
 }
 
@@ -3285,14 +3281,19 @@ static irqreturn_t lan887x_handle_interrupt(struct phy_device *phydev)
 		phy_error(phydev);
 		return IRQ_NONE;
 	}
+	if (irq_status == 0xffff)
+		return IRQ_NONE;
 
 	if (irq_status & LAN887X_MX_CHIP_TOP_LINK_MSK) {
 		//phydev_info(phydev, "LINK_INT_MSK=0x%x\n", irq_status);
 		phy_trigger_machine(phydev);
 	}
 
-	while ((ptp_irq_status = phy_read_mmd(phydev, MDIO_MMD_VEND1, LAN887X_PTP_INT_STS)) > 0)
+	while ((ptp_irq_status = phy_read_mmd(phydev, MDIO_MMD_VEND1, LAN887X_PTP_INT_STS)) > 0) {
+		if (ptp_irq_status == 0xffff)
+			return IRQ_NONE;
 		lan887x_handle_ptp_interrupt(phydev, ptp_irq_status);
+	}
 
 	return IRQ_HANDLED;
 }
