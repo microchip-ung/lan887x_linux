@@ -1549,8 +1549,13 @@ static void lan743x_phy_interface_select(struct lan743x_adapter *adapter)
 		adapter->phy_interface = PHY_INTERFACE_MODE_GMII;
 	else if ((id_rev == ID_REV_ID_LAN7431_) && (data & MAC_CR_MII_EN_))
 		adapter->phy_interface = PHY_INTERFACE_MODE_MII;
-	else
+	else {
 		adapter->phy_interface = PHY_INTERFACE_MODE_RGMII;
+		/* LAN7431 External PHY Configure RGMII */
+		if ((adapter->csr.id_rev & ID_REV_ID_MASK_) ==
+		    ID_REV_ID_LAN7431_)
+			adapter->phy_interface = PHY_INTERFACE_MODE_RGMII_RXID;
+	}
 }
 
 static int lan743x_phy_open(struct lan743x_adapter *adapter)

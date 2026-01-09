@@ -1082,9 +1082,7 @@ static int lan743x_phy_open(struct lan743x_adapter *adapter)
 		phydev->interface = PHY_INTERFACE_MODE_GMII;
 		if ((adapter->csr.id_rev & ID_REV_ID_MASK_) == ID_REV_ID_LAN7431_) {
 			phydev->irq = adapter->phy.phy_irq;
-
-			if (!phy_interface_is_rgmii(phydev))
-				phydev->interface = PHY_INTERFACE_MODE_RGMII;
+			phydev->interface = PHY_INTERFACE_MODE_RGMII_RXID;
 		}
 		ret = phy_connect_direct(netdev, phydev,
 					 lan743x_phy_link_status_change,

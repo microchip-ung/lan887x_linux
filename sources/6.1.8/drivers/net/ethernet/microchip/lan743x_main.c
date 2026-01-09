@@ -1566,12 +1566,13 @@ static int lan743x_phy_open(struct lan743x_adapter *adapter)
 		if (adapter->is_pci11x1x)
 			phydev->interface = PHY_INTERFACE_MODE_RGMII;
 
-		/* LAN7431 External PHY Enable RGMII */
-		else if ((adapter->csr.id_rev & ID_REV_ID_MASK_) == ID_REV_ID_LAN7431_) {
-			phydev->irq = adapter->phy.phy_irq;
-
-			if (!phy_interface_is_rgmii(phydev))
-				phydev->interface = PHY_INTERFACE_MODE_RGMII;
+		else {
+			phydev->interface = PHY_INTERFACE_MODE_RGMII;
+			/* LAN7431 External PHY Enable RGMII */
+			if ((adapter->csr.id_rev & ID_REV_ID_MASK_) == ID_REV_ID_LAN7431_) {
+				phydev->irq = adapter->phy.phy_irq;
+				phydev->interface = PHY_INTERFACE_MODE_RGMII_RXID;
+			}
 		}
 
 		ret = phy_connect_direct(netdev, phydev,
